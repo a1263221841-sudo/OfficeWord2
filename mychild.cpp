@@ -4,6 +4,7 @@
 
 MyChild::MyChild()
 {
+
     setAttribute(Qt::WA_DeleteOnClose);//关闭窗口时销毁
     isUntitled=true;
 }
@@ -43,7 +44,7 @@ bool MyChild::loadFile(const QString &fileName)//导入文件
     }
     setCurrentFile(fileName);
    // connect(document().SIGNAL(contentsChanged()),this,SLOT(documenWasModified()));
-   // connect(document(),QTextDocument::contentsChange,this,documentWasModifiled());
+    connect(document(),&QTextDocument::contentsChange,this,&MyChild::documentWasModifiled);
     return true;
     }
 }
@@ -127,7 +128,7 @@ bool MyChild::saveFile(QString fileName)//保存文件
 }
 
 //格式设置
-void MyChild::mergeFomationOnWordOrSelection(const QTextCharFormat &format)//格式字体设置
+void MyChild::mergeFormatOnWordOrSelection(const QTextCharFormat &format)//格式字体设置
 {
         QTextCursor cursor = this->textCursor();
         if(!cursor.hasSelection())

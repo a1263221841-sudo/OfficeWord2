@@ -2,6 +2,8 @@ QT       += core gui printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+QT += printsupport
+
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -28,3 +30,26 @@ HEADERS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resource.qrc
+
+DISTFILES += \
+    images/editcopy.png \
+    images/editcut.png \
+    images/editpaste.png \
+    images/editredo.png \
+    images/editundo.png \
+    images/filenew.png \
+    images/fileopen.png \
+    images/fileprint.png \
+    images/filesave.png \
+    images/textbold.png \
+    images/textcenter.png \
+    images/textitalic.png \
+    images/textjustify.png \
+    images/textleft.png \
+    images/textright.png \
+    images/textunder.png \
+    images/wordlogo1.png \
+    images/wordlogo2.png

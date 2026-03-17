@@ -61,7 +61,7 @@ private slots:
     void fileSaveAs(); //另存为
     void filePrint();//打印
     void filePrintPreview();//文件打印预览
-    void printPreviw(QPrinter*);//打印预览
+    void printPreview(QPrinter*);//打印预览
 
     void undo();//撤销
     void redo();//重做
@@ -72,7 +72,96 @@ private slots:
     void about();//关于
 
     void textBold();//加粗
-    void textItalic()
+    void textItalic();//斜体
+    void textUnderline();//下划线
+    void textAlign(QAction *a);//文本对齐函数
+    void textStyle(int styleIndex);//文本样式
+    void textFamily(const QString &f);//函数设置文本格式
+    void textSize(const QString &p);//文本大小
+    void textColor();//文本颜色
+
+    void updateMenus();//更新菜单
+    void updateWindowMenu();//更新窗口菜单
+    MyChild *createMyChild();//创建子窗口对象
+    void setActiveSubWindow(QWidget *window);//设置active激活窗口
+
+
+private:
+    void createActions();//创建菜单动作
+    void createMenus();//创建菜单
+    void createToolBars();//创建工具条
+    void createStatusBar(); // 创建状态条
+       void enabledText();         //使得【格式】下的各个子菜单项可用
+       void fontChanged(const QFont &f); // 字体更改
+       void colorChanged(const QColor &c); // 颜色更改
+       void alignmentChanged(Qt::Alignment a); // 对齐判断
+
+       MyChild *activeMyChild(); // 激活子窗口
+       QMdiSubWindow *findMyChild(const QString &fileName); // 查找子窗口
+
+       QMdiArea *mdiArea; // QMdiArea就像是多文档窗口的窗口管理器
+
+       // QSignalMapper类收集了一系列的无参信号，然后使用相对于信号发送者来说的整数、字符串或控件参数来重新发送它们。
+       // QSignalMapper类可以看成是信号的翻译和转发器。
+       QSignalMapper *windowMapper;
+
+
+       //菜单
+       QMenu *fileMenu; // 文件菜单
+       QMenu *editMenu; // 编辑菜单
+       QMenu *formatMenu; // 格式菜单
+       QMenu *fontMenu; // 字体子菜单：加粗 倾斜 下划线
+       QMenu *alignMenu; // 对齐子菜单：左 右 居中 两端
+       QMenu *windowMenu; // 窗口菜单
+       QMenu *helpMenu; // 帮助菜单
+
+
+       //工具栏
+       QToolBar *fileToolBar; // 文件工具条
+       QToolBar *editToolBar; // 编辑工具条
+       QToolBar *formatToolBar; // 格式工具条
+       QToolBar *comboToolBar; // 组合工具条
+       QComboBox *comboStyle;      //子控件 标准组合框
+       QFontComboBox *comboFont;   //子控件 字体组合框
+       QComboBox *comboSize;       //子控件 字体大小组合框
+
+
+       //动作(Action)
+       QAction *newAct;            //【文件】主菜单 新建
+       QAction *openAct; // 打开
+       QAction *saveAct; // 保存
+       QAction *saveAsAct; // 另存为
+       QAction *printAct; // 打印
+       QAction *printPreviewAct; // 打印预览
+       QAction *exitAct; // 退出
+
+       QAction *undoAct;           //【编辑】主菜单 撤消
+       QAction *redoAct; // 重做
+       QAction *cutAct; // 剪切
+       QAction *copyAct; // 复制
+       QAction *pasteAct; // 粘贴
+
+       QAction *boldAct;           //【格式】主菜单 加粗
+       QAction *italicAct; // 斜体
+       QAction *underlineAct; // 下划画
+       QAction *leftAlignAct; // 左对齐
+       QAction *centerAct; // 居中对象
+       QAction *rightAlignAct; // 右对象
+       QAction *justifyAct; // 两端
+       QAction *colorAct; // 颜色
+
+       QAction *closeAct;          //【窗口】主菜单 关闭
+       QAction *closeAllAct; // 关闭所有
+       QAction *tileAct; // 平铺
+       QAction *cascadeAct; // 层叠
+       QAction *nextAct; // 下一个
+       QAction *previousAct; // 上一个
+       QAction *separatorAct; // 分离动作
+
+       QAction *aboutAct;          //【帮助】主菜单 关于
+       QAction *aboutQtAct; // 关于Qt
+
+
 };
 
 #endif // MYWORD_H

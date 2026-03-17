@@ -2,9 +2,10 @@
 #define MYCHILD_H
 //第一步 :实现子类mychild
 #include <QTextEdit>//文件编辑框类::QTextEdit
-//#include <QPrinter>  //Qt使用QPrinter生成多页pfg文档
+#include <QPrinter>  //Qt使用QPrinter生成多页pdf文档
 class MyChild : public QTextEdit
 {
+     Q_OBJECT
 public:
     MyChild();
     void newFile();//新建文件
@@ -17,7 +18,7 @@ public:
     {
         return curFile;
     }
-    void mergeFomationOnWordOrSelection(const QTextCharFormat &format);//格式字体设置
+    void mergeFormatOnWordOrSelection(const QTextCharFormat &format);//格式字体设置
     void setAlign(int align);//段落对齐设置
     void setStyle(int style);//段落标号.编号
 
